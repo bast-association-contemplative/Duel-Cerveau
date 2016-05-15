@@ -1,9 +1,22 @@
-//Light control device by the brain with OpenBCI / Processing
+/* ----------------------------------------------------------------------------------------------------
+ * DUEL CERVEAU, 2016
+ * Update: 15/05/16
+ *
+ * Installation connecting two brains to a LED bar, a mental tug of war
+ * with OpenBCI / Processing
+ * 
+ * V1.0
+ * Written by Bastien DIDIER
+ * more info : http://one-billion-cat.com
+ *
+ * ----------------------------------------------------------------------------------------------------
+ */ 
+
 #include <Adafruit_NeoPixel.h>
 
 // définition des broches utilisées
-#define NEO_PIXEL_PIN  6
-#define RESET_PIN 4
+#define NEO_PIXEL_PIN 6
+#define 	RESET_PIN 4
 
 volatile char inChar;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
@@ -35,8 +48,8 @@ void setup() {
   // print help
   Serial.println("LIGHT Controller: starting..."); 
   Serial.println("Help Commands: ");
-  Serial.println("    'r' = ");
-  Serial.println("    'p' = ");
+  Serial.println("    'r' = Add Red Pixel");
+  Serial.println("    'p' = Add Bleu Pixel");
   
   Serial.println("Waiting for Alpha Brainwaves...");
 }
