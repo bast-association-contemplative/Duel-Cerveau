@@ -1,4 +1,4 @@
-### – Brain Battle
+### Brain Battle
 
 Deux participants se retrouvent face à une barre de leds bicolore, chacune des couleurs est assignée à une personne.
 
