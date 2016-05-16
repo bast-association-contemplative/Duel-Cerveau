@@ -1,27 +1,35 @@
 /* ----------------------------------------------------------------------------------------------------
  * DUEL CERVEAU, 2016
- * Update: 15/05/16
+ * Update: 16/05/16
  *
  * Installation connecting two brains to a LED bar, a mental tug of war
  * with OpenBCI / Processing
  * 
- * V1.0
+ * V1.1
  * Written by Bastien DIDIER
- * more info : http://one-billion-cat.com
+ * more info : http://one-billion-cat.com/
  *
  * ----------------------------------------------------------------------------------------------------
  */ 
 
 #include <Adafruit_NeoPixel.h>
 
-// définition des broches utilisées
 #define NEO_PIXEL_PIN 6
-#define 	RESET_PIN 4
+#define 	  RESET_PIN 4
 
-volatile char inChar;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
-
 int setupPos = strip.numPixels()/2;
+
+//PLAYERS SETTINGS
+const String J1 = "Red";
+const char J1Char = 'r';
+uint32_t J1color = strip.Color(255, 0, 0);
+
+const String J2 = "Bleu";
+const char J2Char = 'b';
+uint32_t J2color = strip.Color(0, 0, 255);
+
+volatile char inChar; //Stores the values sent by OpenBCI GUI
 
 void setup() {
   // initialize serial:
@@ -36,21 +44,20 @@ void setup() {
 
   //SETUP LED POSITION
   for(uint16_t i=0; i<setupPos; i++) {
-      strip.setPixelColor(i, strip.Color(255, 0, 0));
+      strip.setPixelColor(i, J1color);
       strip.show();
   }
-
   for(uint16_t i=setupPos; i<strip.numPixels(); i++) {
-      strip.setPixelColor(i, strip.Color(0, 0, 255));
+      strip.setPixelColor(i, J2color);
       strip.show();
   }
   
-  // print help
-  Serial.println("LIGHT Controller: starting..."); 
+  // Print Help
+  Serial.println("BRAIN BATTLE Controller: starting..."); 
   Serial.println("Help Commands: ");
-  Serial.println("    'r' = Add Red Pixel");
-  Serial.println("    'p' = Add Bleu Pixel");
-  
+  Serial.println("    '"+String(J1Char)+"' = Add "+J1+" Pixel");
+  Serial.println("    '"+String(J2Char)+"' = Add "+J2+" Pixel");
+
   Serial.println("Waiting for Alpha Brainwaves...");
 }
 
@@ -62,36 +69,33 @@ void serialEvent() {
     Serial.print("Received :");
     Serial.println(inChar);
     
-    if( inChar == 'p' ){
+    if( inChar == J2Char ){
       if(setupPos > 0){
-      strip.setPixelColor(setupPos, strip.Color(0, 0, 255));
-      setupPos--;
-      strip.setPixelColor(setupPos, strip.Color(0, 0, 255));
-      strip.show();
+        strip.setPixelColor(setupPos, J2color);
+        setupPos--;
+        strip.setPixelColor(setupPos, J2color);
+        strip.show();
       } else {
-        Serial.println("Les Bleu Gagne");
-        victoire(strip.Color(0, 0, 255), 3);
-        delay(5000);
-        digitalWrite(RESET_PIN, LOW);
+        win(J2, J2color);
       }
-    } else if( inChar == 'r' ) {
+    } else if( inChar == J1Char ) {
       if(setupPos < strip.numPixels()){
-      strip.setPixelColor(setupPos, strip.Color(255, 0, 0));
-      setupPos++;
-      strip.setPixelColor(setupPos, strip.Color(255, 0, 0));
-      strip.show();
+        strip.setPixelColor(setupPos, J1color);
+        setupPos++;
+        strip.setPixelColor(setupPos, J1color);
+        strip.show();
       } else {
-        Serial.println("Les Rouge Gagne");
-        victoire(strip.Color(255, 0,0), 3);
-        delay(5000);
-        digitalWrite(RESET_PIN, LOW);
+        win(J1, J1color);
       }
     }
-    Serial.println(setupPos);
   }
 }
 
-void victoire(uint32_t c, uint8_t nbBlink){
+void win(String J, uint32_t c){
+  
+  Serial.println(J+" wins");
+  int nbBlink = 3;
+  
   for(int i = 0; i<=3; i++){
     for(uint16_t i = 0; i <= nbBlink; i++){
       for(uint16_t i=0; i<strip.numPixels(); i++) {
@@ -105,5 +109,9 @@ void victoire(uint32_t c, uint8_t nbBlink){
       } 
     }
     delay(500);
-  } 
+  }
+
+  //Wait before Resetting
+  delay(5000);
+  digitalWrite(RESET_PIN, LOW);
 }
