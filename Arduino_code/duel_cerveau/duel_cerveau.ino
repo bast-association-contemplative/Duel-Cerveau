@@ -17,7 +17,7 @@
 #define NEO_PIXEL_PIN 6
 #define 	  RESET_PIN 4
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(57, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 int setupPos = strip.numPixels()/2;
 
 //PLAYERS SETTINGS

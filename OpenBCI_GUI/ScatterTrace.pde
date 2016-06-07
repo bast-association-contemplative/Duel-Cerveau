@@ -103,10 +103,10 @@ class ScatterTrace extends Blank2DTrace {
           pr.canvas.stroke(129, 129, 129);  //set the new line's color;
           break;
         case 1:
-          pr.canvas.stroke(124, 75, 141);  //set the new line's color;
+          pr.canvas.stroke(54, 87, 158);  //set the new line's color;
           break;
         case 2:
-          pr.canvas.stroke(54, 87, 158);  //set the new line's color;
+          pr.canvas.stroke(224, 56, 45);  //set the new line's color;
           break;
         case 3:
           pr.canvas.stroke(49, 113, 89);  //set the new line's color;
@@ -118,7 +118,7 @@ class ScatterTrace extends Blank2DTrace {
           pr.canvas.stroke(253, 94, 52);  //set the new line's color;
           break;
         case 6:
-          pr.canvas.stroke(224, 56, 45);  //set the new line's color;
+          pr.canvas.stroke(124, 75, 141);  //set the new line's color;
           break;
         case 7:
           pr.canvas.stroke(162, 82, 49);  //set the new line's color;

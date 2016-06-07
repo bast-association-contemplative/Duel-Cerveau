@@ -13,12 +13,12 @@ public void updateChannelArrays(int _nchan) {
 // color[] channelColors = new color[16];
 color[] channelColors = {
   color(129, 129, 129), 
-  color(124, 75, 141), 
-  color(54, 87, 158), 
+  color(54, 87, 158),
+  color(224, 56, 45), 
   color(49, 113, 89), 
   color(221, 178, 13), 
   color(253, 94, 52), 
-  color(224, 56, 45), 
+  color(124, 75, 141), 
   color(162, 82, 49)
 };
 
