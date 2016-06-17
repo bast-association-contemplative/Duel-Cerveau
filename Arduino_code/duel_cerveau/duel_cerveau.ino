@@ -7,7 +7,7 @@
  * 
  * V1.1
  * Written by Bastien DIDIER
- * more info : http://one-billion-cat.com/
+ * more info : http://one-billion-cat.com/duel
  *
  * ----------------------------------------------------------------------------------------------------
  */ 

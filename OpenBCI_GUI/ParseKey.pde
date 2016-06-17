@@ -27,6 +27,26 @@ void parseKey(char val) {
   
   //assumes that val is a usual printable ASCII character (ASCII 32 through 126)
   switch (val) {
+    case 'z':
+      //HELP DEACTIVATE CHANNEL
+      deactivateChannel(1-1);
+      deactivateChannel(4-1);
+      deactivateChannel(5-1);
+      deactivateChannel(6-1);
+      deactivateChannel(7-1);
+      deactivateChannel(8-1);
+      //HELP DEACTIVATE SRB
+      channelSettingValues[1][4] = '0';
+      channelSettingValues[2][4] = '0';
+      //AND START APP
+      startRunning(); 
+      break;
+    case 'a':
+      hexBug.dive();
+      break;
+    case 'g':
+      hexBug.left();
+      break;
     case '1':
       deactivateChannel(1-1); 
       break;
